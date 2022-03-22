@@ -26,7 +26,7 @@ namespace PIGIBIG_PI_UPLOADER.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Database=sidc_pigibig;Username=root;Password=password;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=sidc_pigibig;Username=root;Password=supervisor;")]
         public string DB {
             get {
                 return ((string)(this["DB"]));
@@ -35,7 +35,7 @@ namespace PIGIBIG_PI_UPLOADER.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("*.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("*.xlsx")]
         public string FILE_EXT {
             get {
                 return ((string)(this["FILE_EXT"]));
@@ -47,13 +47,37 @@ namespace PIGIBIG_PI_UPLOADER.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("F:\\Pigibig Invoices\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\SAPHana\\PI\\")]
         public string DROP_SITE {
             get {
                 return ((string)(this["DROP_SITE"]));
             }
             set {
                 this["DROP_SITE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SELF_UPLOAD {
+            get {
+                return ((bool)(this["SELF_UPLOAD"]));
+            }
+            set {
+                this["SELF_UPLOAD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=pos;Username=root;Password=supervisor;")]
+        public string DB_POS {
+            get {
+                return ((string)(this["DB_POS"]));
+            }
+            set {
+                this["DB_POS"] = value;
             }
         }
     }

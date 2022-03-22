@@ -145,6 +145,12 @@ namespace PIGIBIG_PI_UPLOADER
             }
         }
 
+        public MySqlDataReader MySQLReader()
+        {
+            cnn.Open();
+            return cmd.ExecuteReader();
+        }
+
         #region Disposing Interface
         /// <summary>
         /// Interface Dispose

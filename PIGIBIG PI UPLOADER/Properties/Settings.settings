@@ -5,15 +5,21 @@
     <Setting Name="DB" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Server=localhost;Database=sidc_pigibig;Username=root;Password=password;&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Server=127.0.0.1;Database=sidc_pigibig;Username=root;Password=supervisor;&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Server=localhost;Database=sidc_pigibig;Username=root;Password=password;</Value>
+      <Value Profile="(Default)">Server=127.0.0.1;Database=sidc_pigibig;Username=root;Password=supervisor;</Value>
     </Setting>
     <Setting Name="FILE_EXT" Type="System.String" Scope="User">
-      <Value Profile="(Default)">*.csv</Value>
+      <Value Profile="(Default)">*.xlsx</Value>
     </Setting>
     <Setting Name="DROP_SITE" Type="System.String" Scope="User">
-      <Value Profile="(Default)">F:\Pigibig Invoices\</Value>
+      <Value Profile="(Default)">C:\SAPHana\PI\</Value>
+    </Setting>
+    <Setting Name="SELF_UPLOAD" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DB_POS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=127.0.0.1;Database=pos;Username=root;Password=supervisor;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
