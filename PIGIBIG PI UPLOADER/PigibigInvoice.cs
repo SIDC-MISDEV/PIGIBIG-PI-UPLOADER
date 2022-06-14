@@ -46,7 +46,7 @@ namespace PIGIBIG_PI_UPLOADER
 
                     dic.Add("@reference" + count, data[count].Reference);
                     dic.Add("@sow" + count, data[count].SowNo);
-                    dic.Add("@parity" + count, data[count].ParityNo);
+                    dic.Add("@parity" + count, data[count].ParityNo.PadLeft(5, '0'));
                     dic.Add("@type" + count, data[count].TypeTransaction);
                     dic.Add("@batch" + count, data[count].BatchNo);
                     dic.Add("@idstock" + count, data[count].IdStock);
@@ -199,8 +199,8 @@ namespace PIGIBIG_PI_UPLOADER
 					        INNER JOIN ledger lgd ON bns.idBranch = lgd.idbranch AND inv.reference = lgd.reference AND inv.idfile = lgd.idfile
 					        INNER JOIN stocks stk ON inv.idstock = stk.idstock
 					        WHERE LEFT(inv.reference, 2) = 'PI'
-					        AND lgd.extractedPI = 'N'
-					        AND inv.extractedPI = 'N'
+					        -- AND lgd.extractedPI = 'N'
+					        -- AND inv.extractedPI = 'N'
 					        AND lgd.cancelled = 0
 					        AND inv.cancelled = 0
 
@@ -248,8 +248,8 @@ namespace PIGIBIG_PI_UPLOADER
 					        INNER JOIN ledger lgd ON bns.idBranch = lgd.idbranch AND inv.reference = lgd.reference AND inv.idfile = lgd.idfile
 					        INNER JOIN stocks stk ON inv.idstock = stk.idstock
 					        WHERE LEFT(inv.reference, 2) = 'RC' AND LEFT(lgd.crossReference, 2) = 'PI'
-					        AND lgd.extractedPI = 'N'
-					        AND inv.extractedPI = 'N'
+					        -- AND lgd.extractedPI = 'N'
+					        -- AND inv.extractedPI = 'N'
 					        AND lgd.cancelled = 0
 					        AND inv.cancelled = 0
 			        ) as rc INNER JOIN ledger lg ON rc.crossReference = lg.reference");

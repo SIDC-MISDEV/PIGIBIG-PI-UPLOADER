@@ -26,7 +26,7 @@ namespace PIGIBIG_PI_UPLOADER.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=sidc_pigibig;Username=root;Password=supervisor;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=pigibig_palawan;Username=root;Password=supervisor;")]
         public string DB {
             get {
                 return ((string)(this["DB"]));
@@ -71,7 +71,7 @@ namespace PIGIBIG_PI_UPLOADER.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=pos;Username=root;Password=supervisor;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=main_office2;Username=root;Password=supervisor;")]
         public string DB_POS {
             get {
                 return ((string)(this["DB_POS"]));
