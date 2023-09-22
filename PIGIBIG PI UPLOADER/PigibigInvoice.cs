@@ -169,14 +169,81 @@ namespace PIGIBIG_PI_UPLOADER
             }
         }
 
-        public List<PigibigInvoice> GetPI()
+        public string GetLatestPI()
+        {
+            try
+            {
+                string reference = string.Empty;
+                var sb = new StringBuilder();
+
+                sb.Append($"SELECT REFERENCE_NO FROM pig_tran02 WHERE BRANCH = '{Properties.Settings.Default.BRANCH_NAME}' ORDER BY REFERENCE_NO DESC LIMIT 1;");
+
+                using (var conn = new MySQLHelper(Properties.Settings.Default.DB, sb))
+                {
+                    using (var dr = conn.MySQLReader())
+                    {
+                        while (dr.Read())
+                        {
+                            reference = dr["REFERENCE_NO"].ToString();
+                        }
+                    }
+                }
+
+                return reference;
+            }
+            catch
+            {
+
+                throw;
+            }
+        }
+
+        public List<PigibigInvoice> GetPI(string reference)
         {
             try
             {
                 var data = new List<PigibigInvoice>();
                 var sb = new StringBuilder();
+                string parameter = string.Empty;
 
-                sb.Append(@"SELECT
+                var prm = new Dictionary<string, object>();
+
+                if(Properties.Settings.Default.SOFOS_TYPE.ToString() == "SOFOS2")
+                {
+                    parameter = !string.IsNullOrEmpty(reference) ? "AND a.reference > @pi" : string.Empty;
+
+                    sb.Append($@"SELECT
+	                    a.reference,
+	                    a.SOW,
+	                    a.parity,
+	                    a.lrType 'TYPE',
+	                    a.lrBatch 'BATCH',
+	                    b.itemcode 'ITEM_CODE',
+	                    b.itemDescription 'DESCRIPTION',
+	                    i.category 'CATEGORY',
+	                    b.quantity 'QUANTITY',
+	                    b.uomCode 'UOM',
+	                    b.sellingPrice 'PRICE',
+	                    b.total 'AMOUNT',
+	                    DATE(a.transdate) as inv_date,
+	                    a.memberid 'CODE_NO',
+	                    a.accountCode 'ACCOUNT_NUMBER',
+	                    (SELECT BranchCode FROM sscs0 LIMIT 1) as BRANCH_CODE,
+	                    '{Properties.Settings.Default.BRANCH_NAME}' as 'BRANCH_NAME'
+                    FROM sapt0 a
+                    INNER JOIN sapt1 b ON a.transnum = b.transnum
+                    INNER JOIN ii000 i ON b.itemcode = i.itemcode
+                    WHERE a.transtype = 'PI'
+                    {parameter}
+                    ORDER BY a.reference ASC;");
+
+                    prm.Add("@pi", reference);
+                }
+                else
+                {
+                    parameter = !string.IsNullOrEmpty(reference) ? "AND inv.reference > @pi" : string.Empty;
+
+                    sb.Append($@"SELECT
 				        inv.REFERENCE,
 				        lgd.SOW,
 				        LPAD(CAST(lgd.PARITY as unsigned), 5, '0') `PARITY`,
@@ -184,7 +251,7 @@ namespace PIGIBIG_PI_UPLOADER
 				        lgd.lrbatch 'BATCH',
 				        inv.idstock 'ITEM_CODE',
 				        stk.name 'DESCRIPTION',
-				        stk.type'CATEGORY',
+				        stk.type 'CATEGORY',
 				        inv.quantity 'QUANTITY',
 				        inv.UNIT 'UOM',
 				        inv.SELLING 'PRICE',
@@ -199,6 +266,7 @@ namespace PIGIBIG_PI_UPLOADER
 					        INNER JOIN ledger lgd ON bns.idBranch = lgd.idbranch AND inv.reference = lgd.reference AND inv.idfile = lgd.idfile
 					        INNER JOIN stocks stk ON inv.idstock = stk.idstock
 					        WHERE LEFT(inv.reference, 2) = 'PI'
+                            {parameter}
 					        -- AND lgd.extractedPI = 'N'
 					        -- AND inv.extractedPI = 'N'
 					        AND lgd.cancelled = 0
@@ -254,7 +322,11 @@ namespace PIGIBIG_PI_UPLOADER
 					        AND inv.cancelled = 0
 			        ) as rc INNER JOIN ledger lg ON rc.crossReference = lg.reference");
 
-                using (var conn = new MySQLHelper(Properties.Settings.Default.DB_POS, sb))
+                    prm.Add("@pi", reference);
+                }
+                
+
+                using (var conn = new MySQLHelper(Properties.Settings.Default.DB_POS, sb, prm))
                 {
                     using (var dr = conn.MySQLReader())
                     {
@@ -276,7 +348,7 @@ namespace PIGIBIG_PI_UPLOADER
                                 TotalAmount = dr["AMOUNT"].ToString(),
                                 AccountNo = dr["ACCOUNT_NUMBER"].ToString(),
                                 CodeNo = dr["CODE_NO"].ToString(),
-                                InvoiceDate = dr["INV_DATE"].ToString(),
+                                InvoiceDate = Convert.ToDateTime(dr["INV_DATE"]).ToString("yyyy-MM-dd"),
                                 BranchCode = dr["BRANCH_CODE"].ToString(),
                                 BranchName = dr["BRANCH_NAME"].ToString()
                             });

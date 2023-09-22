@@ -26,6 +26,9 @@ namespace PIGIBIG_PI_UPLOADER
 
                 invFiles = new List<string>();
 
+                if (!Directory.Exists(dropSite))
+                    Directory.CreateDirectory(dropSite);
+
                 invFiles = Directory.GetFiles(dropSite, fileExtension).ToList();
 
                 foreach (var item in invFiles)
@@ -123,7 +126,7 @@ namespace PIGIBIG_PI_UPLOADER
                             CodeNo = x["CODE_NO"].ToString(),
                             Description = x["DESCRIPTION"].ToString(),
                             IdStock = x["ITEM_CODE"].ToString(),
-                            InvoiceDate = x["INV_DATE"].ToString(),
+                            InvoiceDate = Convert.ToDateTime(x["INV_DATE"]).ToString("yyyy-MM-dd"),
                             ParityNo = x["PARITY"].ToString(),
                             Price = (Convert.ToDecimal(x["PRICE"])).ToString(),
                             Qty = (Convert.ToDecimal(x["QUANTITY"])).ToString(),
@@ -156,7 +159,9 @@ namespace PIGIBIG_PI_UPLOADER
                 List<PigibigInvoice> inv = new List<PigibigInvoice>();
                 PigibigInvoice pi = new PigibigInvoice();
 
-                inv = pi.GetPI();
+                string reference = pi.GetLatestPI();
+
+                inv = pi.GetPI(reference);
 
                 if(inv.Count > 0)
                 {
@@ -164,7 +169,7 @@ namespace PIGIBIG_PI_UPLOADER
                     pi.SaveTransaction(inv);
 
                     //Update POS extracted PI = 'Y'
-                    pi.UpdateExtractedPI();
+                    //pi.UpdateExtractedPI();
                 }
 
             }

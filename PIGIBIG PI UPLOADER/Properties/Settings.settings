@@ -2,15 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PIGIBIG_PI_UPLOADER.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DB" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Server=127.0.0.1;Database=pigibig_palawan;Username=root;Password=supervisor;&lt;/ConnectionString&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Server=127.0.0.1;Database=pigibig_palawan;Username=root;Password=supervisor;</Value>
-    </Setting>
     <Setting Name="FILE_EXT" Type="System.String" Scope="User">
-      <Value Profile="(Default)">*.xlsx</Value>
+      <Value Profile="(Default)">*.csv</Value>
     </Setting>
     <Setting Name="DROP_SITE" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\SAPHana\PI\</Value>
@@ -19,7 +12,20 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DB_POS" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=127.0.0.1;Database=main_office2;Username=root;Password=supervisor;</Value>
+      <Value Profile="(Default)">Server=192.168.1.145;Database=_sofos2balanga;Username=root;Password=supervisor;</Value>
+    </Setting>
+    <Setting Name="DB" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Server=192.168.0.38;Database=sidc_pigibig;Username=root;Password=supervisor;&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Server=192.168.0.38;Database=sidc_pigibig;Username=root;Password=supervisor;</Value>
+    </Setting>
+    <Setting Name="SOFOS_TYPE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SOFOS2</Value>
+    </Setting>
+    <Setting Name="BRANCH_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BALANGA</Value>
     </Setting>
   </Settings>
 </SettingsFile>

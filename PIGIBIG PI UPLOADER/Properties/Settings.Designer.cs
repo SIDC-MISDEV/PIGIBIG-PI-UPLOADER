@@ -23,19 +23,9 @@ namespace PIGIBIG_PI_UPLOADER.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=pigibig_palawan;Username=root;Password=supervisor;")]
-        public string DB {
-            get {
-                return ((string)(this["DB"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("*.xlsx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("*.csv")]
         public string FILE_EXT {
             get {
                 return ((string)(this["FILE_EXT"]));
@@ -71,13 +61,47 @@ namespace PIGIBIG_PI_UPLOADER.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Database=main_office2;Username=root;Password=supervisor;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=192.168.1.145;Database=_sofos2balanga;Username=root;Password=supervisor;")]
         public string DB_POS {
             get {
                 return ((string)(this["DB_POS"]));
             }
             set {
                 this["DB_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=192.168.0.38;Database=sidc_pigibig;Username=root;Password=supervisor;")]
+        public string DB {
+            get {
+                return ((string)(this["DB"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SOFOS2")]
+        public string SOFOS_TYPE {
+            get {
+                return ((string)(this["SOFOS_TYPE"]));
+            }
+            set {
+                this["SOFOS_TYPE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BALANGA")]
+        public string BRANCH_NAME {
+            get {
+                return ((string)(this["BRANCH_NAME"]));
+            }
+            set {
+                this["BRANCH_NAME"] = value;
             }
         }
     }
