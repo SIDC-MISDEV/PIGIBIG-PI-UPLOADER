@@ -65,6 +65,10 @@ namespace PIGIBIG_PI_UPLOADER
                 sb.Append($"{DateTime.Now.ToString()} -> {er.Message} {Environment.NewLine}");
 
                 File.AppendAllText(Path.Combine(dropSite, "Error.txt"), sb.ToString());
+
+                Console.WriteLine("AN ERROR OCCURED: " + er.Message);
+                Console.WriteLine("Press Enter to exit...");
+                Console.ReadLine();
             }
         }
 

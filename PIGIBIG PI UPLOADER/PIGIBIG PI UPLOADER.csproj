@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ACryptoServiceProvider.cs" />
     <Compile Include="MySQLHelper.cs" />
     <Compile Include="PigibigInvoice.cs" />
     <Compile Include="Program.cs" />
