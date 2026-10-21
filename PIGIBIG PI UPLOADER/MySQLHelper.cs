@@ -74,17 +74,39 @@ namespace PIGIBIG_PI_UPLOADER
         {
             try
             {
+                // Build connection string
+                var builder = new MySqlConnectionStringBuilder(dbSource);
 
-                cnn = new MySqlConnection(dbSource);
+                // Decrypt password
+                ACryptoServiceProvider crypt = new ACryptoServiceProvider();
+                builder.Password = crypt.Decrypt(builder.Password, "*sup3r5dm1n*");
+
+                // Assign decrypted connection string
+                cnn = new MySqlConnection(builder.ConnectionString);
 
                 _argSQLCommand = argSQLCommand;
                 _argSQLParam = argSQLParam;
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception("Error initializing MySQLHelper", ex);
             }
         }
+        //public MySQLHelper(string dbSource, StringBuilder argSQLCommand = null, Dictionary<string, object> argSQLParam = null)
+        //{
+        //    try
+        //    {
+
+        //        cnn = new MySqlConnection(dbSource);
+
+        //        _argSQLCommand = argSQLCommand;
+        //        _argSQLParam = argSQLParam;
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
+        //}
 
         public void CommitTransaction()
         {
